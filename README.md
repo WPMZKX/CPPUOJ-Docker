@@ -1,6 +1,6 @@
 ## Hydro-Docker
 
-** 以下内容魔改自 [源仓库](https://github.com/hydro-dev/Hydro) 的 `Hydro/install/docker` 文件夹，脚本内容不一定为最新版，请核对后使用 **
+> 以下内容魔改自 [源仓库](https://github.com/hydro-dev/Hydro) 的 `Hydro/install/docker` 文件夹，脚本内容不一定为最新版，请核对后使用
 
 ## docker 安装方式仅适用于可熟练使用 docker-compose 维护容器的用户，并要求您有基础的错误排查能力
 
@@ -63,7 +63,7 @@
 
 参考 [官方文档](https://hydro.js.org/) ，主要操作请进入 `oj-backend` 容器操作，涉及作为独立进程的评测机，请进入 `oj-judge` 容器操作。
 
-进入容器的方法是
+进入容器的方法是  
    `docker exec -it <容器名> /bin/bash`  
-例如
+例如  
    `docker exec -it oj-backend /bin/bash`  
