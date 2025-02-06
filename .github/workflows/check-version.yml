@@ -81,8 +81,8 @@ jobs:
         # 配置 Git 用户信息
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        # 拉取远程仓库最新提交并变基到本地（也可以使用 git pull --rebase）
-        git pull --rebase origin ${{ github.ref }}
+        # 使用 autostash 自动保存未暂存的修改，然后拉取最新提交
+        git pull --rebase --autostash origin ${{ github.ref }}
         # 添加并提交 README.md 文件的更新
         git add README.md
         git commit -m "Update README with new build date and version: ${{ steps.version-extract.outputs.version }}"
@@ -90,7 +90,6 @@ jobs:
         git push origin HEAD:${{ github.ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
     - name: Push the tag to GitHub
       if: steps.version-extract.outputs.version != steps.check-release.outputs.latest_tag
