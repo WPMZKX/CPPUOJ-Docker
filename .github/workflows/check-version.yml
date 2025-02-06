@@ -1,0 +1,59 @@
+name: Version Check and Release
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # 每天UTC时间午夜运行
+  workflow_dispatch:     # 允许手动触发
+
+jobs:
+  check-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 允许创建release
+
+    steps:
+    - name: Extract version from SVG
+      id: version-extract
+      run: |
+        # 下载并解析SVG文件
+        curl -s -o version.svg https://img.shields.io/npm/v/hydrooj?label=hydrooj
+        VERSION=$(grep -oP 'aria-label="hydrooj: \K(v\d+\.\d+\.\d+)' version.svg)
+        
+        if [ -z "$VERSION" ]; then
+          echo "::error::Version extraction failed"
+          exit 1
+        fi
+        
+        echo "Extracted version: $VERSION"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Get latest release
+      id: check-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # 通过GitHub API获取最新release
+        RESPONSE=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${{ github.repository }}/releases/latest")
+        
+        if echo "$RESPONSE" | grep -q '"tag_name":'; then
+          LATEST_TAG=$(echo "$RESPONSE" | sed -n 's/.*"tag_name": "\([^"]*\)".*/\1/p')
+        else
+          LATEST_TAG=""
+        fi
+        
+        echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+        echo "Current latest release: $LATEST_TAG"
+
+    - name: Create New Release
+      if: steps.version-extract.outputs.version != steps.check-release.outputs.latest_tag
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.version-extract.outputs.version }}
+        release_name: ${{ steps.version-extract.outputs.version }}
+        body: |
+          **Full Changelog**: https://github.com/${{ github.repository }}/commits/${{ steps.version-extract.outputs.version }}
+        draft: false
+        prerelease: false
