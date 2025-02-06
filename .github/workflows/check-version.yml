@@ -90,11 +90,12 @@ jobs:
         git push origin HEAD:${{ github.ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Push the tag to GitHub
-      if: steps.version-extract.outputs.version != steps.check-release.outputs.latest_tag
+        
+    - name: Push the tag to GitHub (force update)
       run: |
-        git tag ${{ steps.version-extract.outputs.version }}
-        git push origin ${{ steps.version-extract.outputs.version }}
+        TAG=${{ steps.version-extract.outputs.version }}
+        git tag -f $TAG
+        git push origin -f $TAG
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
