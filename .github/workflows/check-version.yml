@@ -93,6 +93,7 @@ jobs:
 
 
     - name: Push the tag to GitHub
+      if: steps.version-extract.outputs.version != steps.check-release.outputs.latest_tag
       run: |
         git tag ${{ steps.version-extract.outputs.version }}
         git push origin ${{ steps.version-extract.outputs.version }}
