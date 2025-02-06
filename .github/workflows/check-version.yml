@@ -53,19 +53,6 @@ jobs:
         echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
         echo "Current latest release: $LATEST_TAG"
 
-    - name: Create New Release
-      if: ${{ steps.version-extract.outputs.version != steps.check-release.outputs.latest_tag }}
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.version-extract.outputs.version }}
-        release_name: ${{ steps.version-extract.outputs.version }}
-        body: |
-          **Full Changelog**: https://github.com/${{ github.repository }}/commits/${{ steps.version-extract.outputs.version }}
-        draft: false
-        prerelease: false
-
     - name: Update README.md with new build date and version
       if: ${{ steps.version-extract.outputs.version != steps.check-release.outputs.latest_tag }}
       run: |
@@ -90,6 +77,19 @@ jobs:
         git push origin HEAD:${{ github.ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create New Release
+      if: ${{ steps.version-extract.outputs.version != steps.check-release.outputs.latest_tag }}
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.version-extract.outputs.version }}
+        release_name: ${{ steps.version-extract.outputs.version }}
+        body: |
+          **Full Changelog**: https://github.com/${{ github.repository }}/commits/${{ steps.version-extract.outputs.version }}
+        draft: false
+        prerelease: false
 
   build_and_push_to_ghcr:
     needs: check-release
