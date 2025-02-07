@@ -1,9 +1,9 @@
 name: Version Check, Release and Build Docker Image
 
-# 触发方式：定时（UTC 1:00，TZ 已统一设为 Asia/Shanghai）和手动触发
+# 触发方式：定时（UTC 16:00，TZ 已统一设为 Asia/Shanghai）和手动触发
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 16 * * *'
   workflow_dispatch:
 
 jobs:
