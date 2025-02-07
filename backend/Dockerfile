@@ -1,9 +1,5 @@
 FROM node:22
 ADD ./entrypoint.sh /root/entrypoint.sh
-RUN yarn config set registry https://r.cnpmjs.org
-RUN yarn config get registry
-RUN npm config set registry https://r.cnpmjs.org
-RUN npm config get registry
 RUN yarn global add pm2 hydrooj @hydrooj/ui-default
 RUN yarn global add @hydrooj/blog
 RUN hydrooj addon add @hydrooj/blog
