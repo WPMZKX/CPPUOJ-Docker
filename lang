@@ -1,0 +1,365 @@
+__hint__:
+  - ~ All keys starting with _ will be ignored
+  - ~ Entries named like [foo], [foo].[bar] [foo].[baz]
+  - will be merged into one category.
+  - ~ A entry named [foo].[bar] will inhert all options
+  - defined in entry [foo] if not overwritten
+  - ~ code_file option defaults to foo.[name]
+  - ~ highlight option defaults to [name]
+  - ~ if highlight option was set, monaco option defaults
+  - to [highlight], otherwise defaults to [name]
+  - ~ Compiling be be ignored if compile option wasn't set
+  - ~ Key marked with a ? means the option is optional
+  - (name):
+      disabled?: whether to disable this language
+      compile?: Compile Command
+      code_file?: Where to write code file when compiling, defaults to `foo.[name]`
+      execute: Command to execute the program
+      highlight?: PrismJS highlight mode
+      monaco?: Monaco editor mode
+      time_limit_rate?: Time limit rate
+      target?: Compiler output file, defaults to `foo`
+      display: Display name
+      compile_time_limit?: Compile time limit, in milliseconds
+c:
+  compile: /usr/bin/gcc -Wall -std=c99 -o foo foo.c -lm -I/include
+  code_file: foo.c
+  highlight: c
+  monaco: c
+  display: C
+  validAs:
+    ybtbas: c
+    srqc: c
+    atcoder: c
+    loj: c
+    bzoj: c
+    luogu: c/99/gcc
+c.c99:
+  compile: /usr/bin/gcc -Wall -std=c99 -o foo foo.c -lm -I/include
+  display: C99
+  validAs:
+    ybtbas: c.c99
+    srqc: c.c99
+    atcoder: c.c99
+    loj: c.c99
+    bzoj: c.c99
+c.c99o2:
+  compile: /usr/bin/gcc -Wall -std=c99 -o foo foo.c -lm -O2 -I/include
+  display: C99(O2)
+c.c11:
+  compile: /usr/bin/gcc -Wall -std=c11 -o foo foo.c -lm -I/include
+  display: C11
+  validAs:
+    ybtbas: c.c11
+    srqc: c.c11
+    atcoder: c.c11
+    loj: c.c11
+    bzoj: c.c11
+c.c11o2:
+  compile: /usr/bin/gcc -Wall -std=c11 -o foo foo.c -lm -O2 -I/include
+  display: C11(O2)
+c.c18:
+  compile: /usr/bin/gcc -Wall -std=c18 -o foo foo.c -lm -I/include
+  display: C18
+c.c18o2:
+  compile: /usr/bin/gcc -Wall -std=c18 -o foo foo.c -lm -O2 -I/include
+  display: C18(O2)
+c.c24:
+  compile: /usr/bin/gcc -Wall -std=c24 -o foo foo.c -lm -I/include
+  display: C24
+c.c24o2:
+  compile: /usr/bin/gcc -Wall -std=c24 -o foo foo.c -lm -O2 -I/include
+  display: C24(O2)
+cc:
+  compile: /usr/bin/g++ -Wall -std=c++98 -o foo foo.cc -lm -I/include
+  code_file: foo.cc
+  highlight: cpp
+  monaco: cpp
+  display: C++
+  validAs:
+    ybtbas: cc
+    srqc: cc
+    atcoder: cc
+    loj: cc
+    bzoj: cc
+cc.cc98:
+  compile: /usr/bin/g++ -Wall -std=c++98 -o foo foo.cc -lm -I/include
+  display: C++98
+  validAs:
+    ybtbas: cc.cc98
+    srqc: cc.cc98
+    atcoder: cc.cc98
+    loj: cc.cc98
+    bzoj: cc.cc98
+    luogu: cxx/98/gcc
+cc.cc98o2:
+  compile: /usr/bin/g++ -Wall -std=c++98 -o foo foo.cc -lm -O2 -I/include
+  display: C++98(O2)
+  validAs:
+    ybtbas: cc.cc98o2
+    srqc: cc.cc98o2
+    atcoder: cc.cc98o2
+    loj: cc.cc98o2
+    bzoj: cc.cc98o2
+    luogu: cxx/98/gcco2
+cc.cc03:
+  compile: /usr/bin/g++ -Wall -std=c++03 -o foo foo.cc -lm -I/include
+  display: C++03
+  validAs:
+    ybtbas: cc.cc03
+    srqc: cc.cc03
+    atcoder: cc.cc03
+    loj: cc.cc03
+    bzoj: cc.cc03
+cc.cc03o2:
+  compile: /usr/bin/g++ -Wall -std=c++03 -o foo foo.cc -lm -O2 -I/include
+  display: C++03(O2)
+  validAs:
+    ybtbas: cc.cc03o2
+    srqc: cc.cc03o2
+    atcoder: cc.cc03o2
+    loj: cc.cc03o2
+    bzoj: cc.cc03o2
+cc.cc11:
+  compile: /usr/bin/g++ -Wall -std=c++11 -o foo foo.cc -lm -I/include
+  display: C++11
+  validAs:
+    ybtbas: cc.cc11
+    srqc: cc.cc11
+    atcoder: cc.cc11
+    loj: cc.cc11
+    bzoj: cc.cc11
+    luogu: cxx/11/gcc
+cc.cc11o2:
+  compile: /usr/bin/g++ -Wall -std=c++11 -o foo foo.cc -lm -O2 -I/include
+  display: C++11(O2)
+  validAs:
+    ybtbas: cc.cc11o2
+    srqc: cc.cc11o2
+    atcoder: cc.cc11o2
+    loj: cc.cc11o2
+    bzoj: cc.cc11o2
+    luogu: cxx/11/gcco2
+cc.cc14:
+  compile: /usr/bin/g++ -Wall -std=c++14 -o foo foo.cc -lm -I/include
+  display: C++14
+  validAs:
+    ybtbas: cc.cc14
+    srqc: cc.cc14
+    atcoder: cc.cc14
+    loj: cc.cc14
+    bzoj: cc.cc14
+    luogu: cxx/14/gcc
+cc.cc14o2:
+  compile: /usr/bin/g++ -Wall -std=c++14 -o foo foo.cc -lm -O2 -I/include
+  display: C++14(O2)
+  validAs:
+    ybtbas: cc.cc14o2
+    srqc: cc.cc14o2
+    atcoder: cc.cc14o2
+    loj: cc.cc14o2
+    bzoj: cc.cc14o2
+    luogu: cxx/14/gcco2
+cc.cc17:
+  compile: /usr/bin/g++ -Wall -std=c++17 -o foo foo.cc -lm -I/include
+  display: C++17
+  validAs:
+    ybtbas: cc.cc17
+    srqc: cc.cc17
+    atcoder: cc.cc17
+    loj: cc.cc17
+    bzoj: cc.cc17
+    luogu: cxx/17/gcc
+cc.cc17o2:
+  compile: /usr/bin/g++ -Wall -std=c++17 -o foo foo.cc -lm -O2 -I/include
+  display: C++17(O2)
+  validAs:
+    ybtbas: cc.cc17o2
+    srqc: cc.cc17o2
+    atcoder: cc.cc17o2
+    loj: cc.cc17o2
+    bzoj: cc.cc17o2
+    luogu: cxx/17/gcco2
+cc.cc20:
+  compile: /usr/bin/g++ -Wall -std=c++20 -o foo foo.cc -lm -I/include
+  display: C++20
+  validAs:
+    luogu: cxx/20/gcc
+cc.cc20o2:
+  compile: /usr/bin/g++ -Wall -std=c++20 -o foo foo.cc -lm -O2 -I/include
+  display: C++20(O2)
+  validAs:
+    luogu: cxx/20/gcco2
+cc.cc24:
+  compile: /usr/bin/g++ -Wall -std=c++24 -o foo foo.cc -lm -I/include
+  display: C++24
+cc.cc24o2:
+  compile: /usr/bin/g++ -Wall -std=c++24 -o foo foo.cc -lm -O2 -I/include
+  display: C++24(O2)
+py:
+  compile: >-
+    /usr/bin/python -c "import py_compile; py_compile.compile('/w/foo.py',
+    '/w/foo', doraise=True)"
+  code_file: foo.py
+  execute: /usr/bin/python foo
+  highlight: python
+  display: Python
+  validAs:
+    ybtbas: py
+    srqc: py
+    atcoder: py
+    loj: py
+    bzoj: py
+py.py3:
+  compile: >-
+    /usr/bin/python3 -c "import py_compile; py_compile.compile('/w/foo.py',
+    '/w/foo', doraise=True)"
+  execute: /usr/bin/python3 foo
+  display: Python 3
+  validAs:
+    ybtbas: py.py3
+    srqc: py.py3
+    atcoder: py.py3
+    loj: py.py3
+    bzoj: py.py3
+    luogu: python3/c
+py.pypy3:
+  compile: >-
+    /bin/bash -c "/usr/bin/pypy3 -c \"import py_compile;
+    py_compile.compile('/w/foo.py', '/w/foo', doraise=True)\" && mv foo.py foo"
+  execute: /bin/bash -c 'mv foo foo.py && /usr/bin/pypy3 -B foo.py'
+  display: PyPy3
+  validAs:
+    luogu: python3/py
+pas:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Pascal
+  highlight: pascal
+  key: pascal/fpc
+  validAs:
+    luogu: pascal/fpc
+    ybtbas: pas
+    srqc: pas
+    atcoder: pas
+    loj: pas
+    bzoj: pas
+cc.noi:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: C++14(GCC 9.3.0)
+  highlight: cpp astyle-c
+  key: cxx/noi/202107
+  validAs:
+    luogu: cxx/noi/202107
+cc.noi.o2:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: C++14(O2, GCC 9.3.0)
+  highlight: cpp astyle-c
+  key: cxx/noi/202107o2
+  validAs:
+    luogu: cxx/noi/202107o2
+java:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Java
+  highlight: java astyle-java
+  key: java/8
+  validAs:
+    luogu: java/8
+    ybtbas: java
+    srqc: java
+    atcoder: java
+    loj: java
+    bzoj: java
+js:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Node.js LTS
+  highlight: js
+  key: js/node/lts
+  validAs:
+    luogu: js/node/lts
+ruby:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Ruby
+  highlight: ruby
+  key: ruby
+  validAs:
+    luogu: ruby
+go:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Go
+  highlight: go
+  key: go
+  validAs:
+    luogu: go
+    ybtbas: go
+    srqc: go
+    atcoder: go
+    loj: go
+    bzoj: go
+rust:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Rust
+  highlight: rust
+  key: rust/rustc
+  validAs:
+    luogu: rust/rustc
+php:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: PHP
+  highlight: php
+  key: php
+  validAs:
+    luogu: php
+    ybtbas: php
+    srqc: php
+    atcoder: php
+    loj: php
+    bzoj: php
+vb:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Visual Basic Mono
+  highlight: vb
+  key: mono_vb
+  validAs:
+    luogu: mono_vb
+haskell:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Haskell
+  highlight: hs
+  key: haskell/ghc
+  validAs:
+    luogu: haskell/ghc
+kotlin:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Kotlin/JVM
+  highlight: kotlin
+  key: kotlin/jvm
+  validAs:
+    luogu: kotlin/jvm
+scala:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Scala
+  highlight: scala
+  key: scala
+  validAs:
+    luogu: scala
+perl:
+  execute: /bin/echo For remote judge only
+  hidden: true
+  display: Perl
+  highlight: perl
+  key: perl
+  validAs:
+    luogu: perl
