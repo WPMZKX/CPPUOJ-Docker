@@ -47,8 +47,8 @@ jobs:
         context: ./backend
         push: true
         tags: |
-          ghcr.io/${{ env.REPO_OWNER }}/hydro-docker-backend:latest
-          ghcr.io/${{ env.REPO_OWNER }}/hydro-docker-backend:${{ steps.vars.outputs.version }}
+          ghcr.io/${{ env.REPO_OWNER }}/docker-hoj-backend:latest
+          ghcr.io/${{ env.REPO_OWNER }}/docker-hoj-backend:${{ steps.vars.outputs.version }}
 
     - name: Build and push judge image to GitHub Container Registry
       uses: docker/build-push-action@v2
@@ -56,8 +56,8 @@ jobs:
         context: ./judge
         push: true
         tags: |
-          ghcr.io/${{ env.REPO_OWNER }}/hydro-docker-judge:latest
-          ghcr.io/${{ env.REPO_OWNER }}/hydro-docker-judge:${{ steps.vars.outputs.version }}
+          ghcr.io/${{ env.REPO_OWNER }}/docker-oj-judge:latest
+          ghcr.io/${{ env.REPO_OWNER }}/docker-oj-judge:${{ steps.vars.outputs.version }}
 
   build_and_push_to_dockerhub:
     runs-on: ubuntu-latest
@@ -101,8 +101,8 @@ jobs:
         context: ./backend
         push: true
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/hydro-docker-backend:latest
-          ${{ secrets.DOCKER_USERNAME }}/hydro-docker-backend:${{ steps.vars.outputs.version }}
+          ${{ secrets.DOCKER_USERNAME }}/docker-hoj-backend:latest
+          ${{ secrets.DOCKER_USERNAME }}/docker-hoj-backend:${{ steps.vars.outputs.version }}
 
     - name: Build and push judge image to Docker Hub
       uses: docker/build-push-action@v2
@@ -110,5 +110,5 @@ jobs:
         context: ./judge
         push: true
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/hydro-docker-judge:latest
-          ${{ secrets.DOCKER_USERNAME }}/hydro-docker-judge:${{ steps.vars.outputs.version }}
+          ${{ secrets.DOCKER_USERNAME }}/docker-oj-judge:latest
+          ${{ secrets.DOCKER_USERNAME }}/docker-oj-judge:${{ steps.vars.outputs.version }}
