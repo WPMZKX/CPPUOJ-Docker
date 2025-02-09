@@ -12,14 +12,12 @@ jobs:
         registry: ['ghcr', 'dockerhub']
         component: ['backend', 'judge']
         include:
-          # GHCR 配置
           - registry: ghcr
             component: backend
             image_name: docker-hoj-backend
           - registry: ghcr
             component: judge
             image_name: docker-oj-judge
-          # Docker Hub 配置
           - registry: dockerhub
             component: backend
             image_name: docker-hoj-backend
@@ -47,7 +45,5 @@ jobs:
           context: ./${{ matrix.component }}
           push: true
           tags: |
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/{1}:{2}', github.repository_owner, matrix.image_name, env.GITHUB_REF_NAME) || format('{0}/{1}:{2}', secrets.DOCKER_USERNAME, matrix.image_name, env.GITHUB_REF_NAME) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/{1}:{2}', github.repository_owner, matrix.image_name, github.ref_name) || format('{0}/{1}:{2}', secrets.DOCKER_USERNAME, matrix.image_name, github.ref_name) }}
             ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/{1}:latest', github.repository_owner, matrix.image_name) || format('{0}/{1}:latest', secrets.DOCKER_USERNAME, matrix.image_name) }}
-        env:
-          GITHUB_REF_NAME: ${{ github.ref_name }}
