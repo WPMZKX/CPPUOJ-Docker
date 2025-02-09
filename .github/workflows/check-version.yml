@@ -2,7 +2,7 @@ name: Version Check, Release and Build Docker Image
 
 on:
   schedule:
-    - cron: '0 16 * * *'  # UTC 16:00 (Asia/Shanghai 00:00)
+    - cron: '0 16 * * *'
   workflow_dispatch:
 
 jobs:
@@ -55,7 +55,7 @@ jobs:
 
       - name: Create Release
         if: ${{ steps.version-extract.outputs.version != steps.get-release.outputs.latest_tag }}
-        uses: actions/create-release@v2
+        uses: actions/create-release@v1  # 修正为官方可用版本
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -72,14 +72,12 @@ jobs:
         registry: ['ghcr', 'dockerhub']
         component: ['backend', 'judge']
         include:
-          # GHCR 配置
           - registry: ghcr
             component: backend
             image_name: docker-hoj-backend
           - registry: ghcr
             component: judge
             image_name: docker-oj-judge
-          # Docker Hub 配置
           - registry: dockerhub
             component: backend
             image_name: docker-hoj-backend
@@ -91,7 +89,7 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-
+      
       - uses: docker/setup-buildx-action@v3
 
       - name: Login to ${{ matrix.registry }}
