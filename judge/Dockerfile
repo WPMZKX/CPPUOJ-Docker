@@ -29,6 +29,7 @@ RUN cd /Python-2.7.18 && ./configure --with-pydebug
 RUN cd /Python-2.7.18 && make -s -j16
 RUN export PATH=$PATH:/Python-2.7.18/
 RUN ln -s /Python-2.7.18/python /usr/bin/python
+RUN ln -s /Python-2.7.18/python /usr/bin/python2
 
 ADD ./entrypoint.sh /root/entrypoint.sh
 ADD ./judge.yaml /root/judge.yaml
