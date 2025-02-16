@@ -15,9 +15,19 @@ jobs:
     outputs:
       version: ${{ steps.version-extract.outputs.version }}
       latest_tag: ${{ steps.get-release.outputs.latest_tag }}
+      lower_owner: ${{ steps.lowercase-owner.outputs.lower_owner }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Process lowercase owner
+        id: lowercase-owner
+        run: |
+          LOWER_OWNER=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')
+          echo "lower_owner=$LOWER_OWNER" >> $GITHUB_OUTPUT
 
       - name: Get version via npm
         id: version-extract
@@ -46,16 +56,16 @@ jobs:
         run: |
           git config user.name "Auto Updater"
           git config user.email "auto@users.noreply.github.com"
-          git checkout -b auto-update
+          git pull --rebase --autostash origin ${{ github.ref }}
           git add README.md
           git commit -m "Update to ${{ steps.version-extract.outputs.version }}"
-          git push origin auto-update
+          git push origin HEAD:${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         if: ${{ steps.version-extract.outputs.version != steps.get-release.outputs.latest_tag }}
-        uses: actions/create-release@v1  # 修正为官方可用版本
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -105,5 +115,5 @@ jobs:
           context: ./${{ matrix.component }}
           push: true
           tags: |
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/{1}:{2}', github.repository_owner, matrix.image_name, needs.check-release.outputs.version) || format('{0}/{1}:{2}', secrets.DOCKER_USERNAME, matrix.image_name, needs.check-release.outputs.version) }}
-            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/{1}:latest', github.repository_owner, matrix.image_name) || format('{0}/{1}:latest', secrets.DOCKER_USERNAME, matrix.image_name) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/{1}:{2}', needs.check-release.outputs.lower_owner, matrix.image_name, needs.check-release.outputs.version) || format('{0}/{1}:{2}', secrets.DOCKER_USERNAME, matrix.image_name, needs.check-release.outputs.version) }}
+            ${{ matrix.registry == 'ghcr' && format('ghcr.io/{0}/{1}:{2}', needs.check-release.outputs.lower_owner, matrix.image_name) || format('{0}/{1}:latest', secrets.DOCKER_USERNAME, matrix.image_name) }}
