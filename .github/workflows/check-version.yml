@@ -57,6 +57,10 @@ jobs:
           git config user.name "Auto Updater"
           git config user.email "auto@users.noreply.github.com"
           git pull --rebase --autostash origin ${{ github.ref }}
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
           git add README.md
           git commit -m "Update to ${{ steps.version-extract.outputs.version }}"
           git push origin HEAD:${{ github.ref }}
