@@ -49,7 +49,9 @@ jobs:
         if: ${{ steps.version-extract.outputs.version != steps.get-release.outputs.latest_tag }}
         run: |
           DATE=$(date +'%Y-%m-%d')
-          sed -i -E "s/(构建日期: )[0-9-]+(，版本: )v[0-9.]+/\1$DATE\2${{ steps.version-extract.outputs.version }}/" README.md
+          NEW_LINE="> 构建日期: $DATE，版本: v${{ steps.version-extract.outputs.version }}"
+          sed -i '5d' README.md
+          sed -i "5i$NEW_LINE" README.md
 
       - name: Commit changes
         if: ${{ steps.version-extract.outputs.version != steps.get-release.outputs.latest_tag }}
