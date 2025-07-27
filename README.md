@@ -5,12 +5,12 @@
 > 构建日期: 2025-07-27，版本: vv5.0.0-beta.6
 
 ![backend Pulls](https://img.shields.io/docker/pulls/wpmzkx/docker-hoj-backend?label=backend%20pulls)
-![backend Image Size](https://img.shields.io/docker/image-size/wpmzkx/docker-hoj-backend?sort=semver&label=backend%20size)
-![docker-hoj-backend Image Version](https://img.shields.io/docker/v/wpmzkx/docker-hoj-backend?sort=semver&label=docker-hoj-backend)
+![backend Image Size](https://img.shields.io/docker/image-size/wpmzkx/docker-hoj-backend?sort=date&label=backend%20size)
+![docker-hoj-backend Image Version](https://img.shields.io/docker/v/wpmzkx/docker-hoj-backend?sort=date&label=docker-hoj-backend)
 
 ![judge Pulls](https://img.shields.io/docker/pulls/wpmzkx/docker-oj-judge?label=judge%20pulls)
-![judge Image Size](https://img.shields.io/docker/image-size/wpmzkx/docker-oj-judge?sort=semver&label=judge%20size)
-![docker-oj-judge Image Version](https://img.shields.io/docker/v/wpmzkx/docker-oj-judge?sort=semver&label=docker-oj-judge)
+![judge Image Size](https://img.shields.io/docker/image-size/wpmzkx/docker-oj-judge?sort=date&label=judge%20size)
+![docker-oj-judge Image Version](https://img.shields.io/docker/v/wpmzkx/docker-oj-judge?sort=date&label=docker-oj-judge)
 
 使用经过开昕验证过的手动构建的版本，请将dockerhub的命名空间从wpmzkx改为petermatthew
 
