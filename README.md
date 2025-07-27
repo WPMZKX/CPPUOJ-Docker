@@ -15,12 +15,12 @@
 使用经过开昕验证过的手动构建的版本，请将dockerhub的命名空间从wpmzkx改为petermatthew
 
 ![Conf. backend Pulls](https://img.shields.io/docker/pulls/petermatthew/docker-hoj-backend?label=Conf.%20backend%20pulls)
-![Conf. backend Image Size](https://img.shields.io/docker/image-size/petermatthew/docker-hoj-backend?label=Conf.%20backend%20size)
-![Conf. docker-hoj-backend Image Version](https://img.shields.io/docker/v/petermatthew/docker-hoj-backend?label=Conf.%20docker-hoj-backend)
+![Conf. backend Image Size](https://img.shields.io/docker/image-size/petermatthew/docker-hoj-backend?sort=date&label=Conf.%20backend%20size)
+![Conf. docker-hoj-backend Image Version](https://img.shields.io/docker/v/petermatthew/docker-hoj-backend?sort=date&label=Conf.%20docker-hoj-backend)
 
 ![Conf. judge Pulls](https://img.shields.io/docker/pulls/petermatthew/docker-oj-judge?label=Conf.%20judge%20pulls)
-![Conf. judge Image Size](https://img.shields.io/docker/image-size/petermatthew/docker-oj-judge?label=Conf.%20judge%20size)
-![Conf. docker-oj-judge Image Version](https://img.shields.io/docker/v/petermatthew/docker-oj-judge?label=Conf.%20docker-oj-judge)
+![Conf. judge Image Size](https://img.shields.io/docker/image-size/petermatthew/docker-oj-judge?sort=date&label=Conf.%20judge%20size)
+![Conf. docker-oj-judge Image Version](https://img.shields.io/docker/v/petermatthew/docker-oj-judge?sort=date&label=Conf.%20docker-oj-judge)
 
 ## docker 安装方式仅适用于可熟练使用 docker-compose 维护容器的用户，并要求您有基础的错误排查能力
 
