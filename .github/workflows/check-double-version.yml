@@ -88,6 +88,7 @@ jobs:
           sed -i "s/^@hydrooj\/hydrojudge v.*/@hydrooj\/hydrojudge v${{ steps.npm-versions.outputs.latest_judge }}/" VERSION
 
       - name: Generate component tags
+        if: ${{ steps.version-check.outputs.build_backend == 'true' || steps.version-check.outputs.build_judge == 'true' }}
         id: tag-generation
         run: |
           BACKEND_TAG="v${{ steps.npm-versions.outputs.latest_hydrooj }}-ui${{ steps.npm-versions.outputs.latest_ui }}"
